@@ -1,19 +1,31 @@
 <template>
   <div class="card">
     <div class="title">{{ state.message }}</div>
+    <span class="sub-title">{{ props.subTitle }}</span>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue"
 
+type Props = {
+  subTitle: string
+}
+
 export default defineComponent({
-  setup () {
+  props: {
+    subTitle: {
+      type: String,
+      default: 'hogechan_dayo'
+    }
+  },
+  setup (props: Props) {
     const state = reactive<{ message: string }>({
       message: "hogechan"
     })
     return {
-      state
+      state,
+      props
     }
   }
 })
